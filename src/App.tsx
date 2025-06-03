@@ -57,7 +57,7 @@ const App = () => (
             <Route 
               path="/admin" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute>
                   <AdminDashboardPage />
                 </ProtectedRoute>
               } 
@@ -65,7 +65,7 @@ const App = () => (
             <Route 
               path="/admin/workshops" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute>
                   <AdminWorkshopsPage />
                 </ProtectedRoute>
               } 
@@ -73,7 +73,7 @@ const App = () => (
             <Route 
               path="/admin/courses" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute>
                   <AdminCoursesPage />
                 </ProtectedRoute>
               } 
@@ -81,7 +81,7 @@ const App = () => (
             <Route 
               path="/admin/courses/add" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <AddCoursePage />
                 </ProtectedRoute>
               } 
@@ -89,7 +89,7 @@ const App = () => (
             <Route 
               path="/admin/courses/edit/:courseId" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <EditCoursePage />
                 </ProtectedRoute>
               } 
@@ -97,7 +97,7 @@ const App = () => (
             <Route 
               path="/admin/waitlist" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <AdminWaitlistPage />
                 </ProtectedRoute>
               } 
@@ -105,7 +105,7 @@ const App = () => (
             <Route 
               path="/admin/success-stories" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <AdminSuccessStoriesPage />
                 </ProtectedRoute>
               } 
@@ -113,7 +113,7 @@ const App = () => (
             <Route 
               path="/admin/success-stories/add" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <AddTestimonialPage />
                 </ProtectedRoute>
               } 
@@ -121,7 +121,7 @@ const App = () => (
             <Route 
               path="/admin/success-stories/edit/:testimonialId" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <EditTestimonialPage />
                 </ProtectedRoute>
               } 
@@ -129,7 +129,7 @@ const App = () => (
             <Route 
               path="/admin/applications" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <AdminApplicationsPage />
                 </ProtectedRoute>
               } 
@@ -137,7 +137,7 @@ const App = () => (
             <Route 
               path="/admin/settings" 
               element={
-                <ProtectedRoute requireAdmin>
+                <ProtectedRoute >
                   <AdminSettingsPage />
                 </ProtectedRoute>
               } 

@@ -132,7 +132,7 @@ const Hero = () => {
           consequat vestibulum cursus.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-60 justify-center">
+        <div className="flex flex-col sm:flex-row gap-16 justify-center">
           <Button
             asChild
             className="text-lg px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full shadow-md"
