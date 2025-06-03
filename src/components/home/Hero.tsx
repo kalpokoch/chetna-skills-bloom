@@ -1,68 +1,154 @@
-
-import { ArrowRight } from 'lucide-react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-const Hero = () => {
-  return <section className="relative bg-gradient-to-br from-background to-muted/50 overflow-hidden">
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute right-0 top-20 w-64 h-64 rounded-full bg-chetna-blue/10 animate-float" />
-        <div className="absolute left-20 bottom-20 w-48 h-48 rounded-full bg-chetna-red/10 animate-float" style={{
-        animationDelay: '1s'
-      }} />
-        <div className="absolute top-40 left-1/4 w-32 h-32 rounded-full bg-chetna-peach/10 animate-float" style={{
-        animationDelay: '2s'
-      }} />
-      </div>
-      
-      <div className="container relative section-padding min-h-[85vh] flex flex-col items-center justify-center text-center">
-        <h1 className="heading-xl mb-6 animate-fade-in max-w-4xl">
-          <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">Practical Skills. Real Careers.</span>
-          <br />Rural to Global.
-        </h1>
-        
-        <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl animate-fade-in" style={{
-        animationDelay: '0.2s'
-      }}>
-          We're preparing to empower youth across India with hands-on training and mentorship in tech and soft skills. Be among the first to join.
-        </p>
-        
-        <div className="flex flex-col sm:flex-row gap-4 animate-fade-in" style={{
-        animationDelay: '0.4s'
-      }}>
-          <Button asChild size="lg" className="text-base px-6">
-            <Link to="/courses">
-              Preview Courses
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="text-base px-6">
-            <Link to="/apply">Join Waitlist</Link>
-          </Button>
-        </div>
 
-        <div className="absolute bottom-12 left-0 right-0 flex justify-center animate-fade-in" style={{
-        animationDelay: '0.6s'
-      }}>
-          <div className="px-6 py-3 bg-white/70 backdrop-blur-sm rounded-full shadow-sm">
-            <div className="flex items-center gap-4 text-sm">
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
-                <span>Launching Soon</span>
-              </span>
-              <span className="w-px h-4 bg-gray-300"></span>
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
-                <span>10+ Courses Planned</span>
-              </span>
-              <span className="w-px h-4 bg-gray-300"></span>
-              <span className="flex items-center">
-                <span className="w-2 h-2 bg-amber-500 rounded-full mr-2"></span>
-                <span>Industry Partnerships</span>
-              </span>
+// === SlidingWords Component ===
+const SlidingWords = () => {
+  const words = [
+    { text: 'Digital Marketing', hex: '#0084FF' },
+    { text: 'Full Stack Development', hex: '#D321C7' },
+    {
+      text: 'Graphics & UI-UX Design', hex: '#0045D9'
+    },
+    { text: 'Cyber Security', hex: '#28BF83' },
+    { text: 'Photography & Video Editing', hex: '#FFA100' },
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % words.length);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center justify-center">
+      <div className="w-[80rem] h-[5.6rem] overflow-hidden relative text-center ">
+        <div
+          className="flex flex-col transition-transform duration-500 ease-in-out"
+          style={{ transform: `translateY(-${index * 5.6}rem)` }}
+        >
+          {words.map((word, i) => (
+            <div
+              key={i}
+              className="h-[5.5rem] flex items-center justify-center text-7xl font-extrabold"
+              style={{ color: word.hex }}
+            >
+              {word.text}
             </div>
-          </div>
+          ))}
         </div>
       </div>
-    </section>;
+    </div>
+  );
 };
+
+// === AnimatedImages Component ===
+const AnimatedImages = ({ position = 'center' }) => {
+  const images = [
+    '/lovable-uploads/g1.png',
+    '/lovable-uploads/g2.png',
+    '/lovable-uploads/g3.png',
+  ];
+
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Postitioning Styles
+  const positionStyle = {
+    left: position === 'left' ? 0 : 'auto',
+    right: position  === 'right' ? 0 : 'auto',
+    transform: position === 'left'
+      ? 'translateX(-50%)'
+      : position === 'right'
+      ? 'translateX(50%)'
+      : 'none',
+  };
+
+  return (
+    <div
+      className="absolute inset-0 w-full h-full z-0 overflow-hidden pointer-events-none flex justify-center items-center"
+      style={positionStyle}
+    >
+      {images.map((src, i) => (
+        <img
+          key={i}
+          src={src}
+          alt={`Animated ${i}`}
+          className="absolute w-full h-full object-cover transition-opacity duration-1000 ease-in-out"
+          style={{
+            opacity: i === index ? 0.8 : 0,
+            zIndex: i === index ? 2 : 1,
+            transition: 'opacity 3s ease-in-out',
+            maskImage:
+              position === "left"
+              ? 'linear-gradient(to right, black 60%, transparent 100%)'
+              : 'linear-gradient(to left, black 60%, transparent 100%)',
+            WebkitMaskImage:
+              position === 'left'
+                ? 'linear-gradient(to right, black 60%, transparent 100%)'
+                : 'linear-gradient(to left, black 60%, transparent 100%)',
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// === Main Hero Component ===
+const Hero = () => {
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center text-center overflow-hidden px-4">
+      <AnimatedImages position="left"/>
+      <AnimatedImages position="right"/>
+      <div className="relative z-10 flex flex-col items-center justify-center text-center px-4">
+        <h1 className="text-8xl font-extrabold leading-tight mt-0 mb-6 text-center">
+          <span className="block leading-tight">
+            <span className="hollow-red">Ready to</span>{' '}
+            <span className="text-chetna-red">Learn</span>
+          </span>
+          <span className="block mt-2 leading-tight">
+            <span className="text-chetna-red">Real</span>{' '}
+            <span className="hollow-red">world</span>{' '}
+            <span className="text-red-600 font-bold">Skills</span>{' '}
+            <span className="hollow-red">like</span>
+          </span>
+        </h1>
+
+
+        <SlidingWords />
+
+        <p className="text-xl md:text-3xl text-gray-700 my-10 max-w-4xl mx-auto">
+          Lorem ipsum dolor sit amet consectetur. Viverra elementum pharetra sit
+          mollis vitae. Nunc vitae ut quisque elementum. Suspendisse morbi in
+          consequat vestibulum cursus.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-60 justify-center">
+          <Button
+            asChild
+            className="text-lg px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full shadow-md"
+          >
+            <Link to="/courses">View Courses</Link>
+          </Button>
+          <Button
+            asChild
+            className="text-lg px-8 py-4 bg-red-600 hover:bg-red-700 text-white rounded-full shadow-md"
+          >
+            <Link to="/apply">Enroll Now !</Link>
+          </Button>
+        </div>
+      </div>
+    </section>
+  );
+};
+
 export default Hero;

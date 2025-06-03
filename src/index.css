@@ -104,6 +104,30 @@
     @apply py-12 md:py-16 lg:py-20;
   }
 }
+.custom-heading {
+  color: #000;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+  font-family: 'Ramabhadra', sans-serif;
+  font-size: 4.75425rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 129.34%; /* 7.44256rem */
+}
+.perspective {
+  perspective: 800px;
+}
+
+.rotateX-90 {
+  transform: rotateX(90deg);
+}
+
+.hollow-red {
+  -webkit-text-stroke: 1px red;
+  color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
 
 @layer utilities {
   .animate-fadeIn {

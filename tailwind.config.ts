@@ -65,7 +65,7 @@ export default {
 				},
 				// Chetna Academy custom colors
 				chetna: {
-					red: "#F01D2C",
+					red: "#E01D24",
 					blue: "#6EAADC",
 					green: "#7ED6AB",
 					peach: "#FEC6A1",
